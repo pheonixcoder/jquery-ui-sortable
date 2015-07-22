@@ -1,4 +1,4 @@
-jQuery UI Sortable
+jQuery UI Sortable (With Multi Select)
 ========
 
 This is a custom, standalone build of jQuery UI that includes the minimum code required to utilize sortables. It includes: jquery.ui.core.js, jquery.ui.widget.js, jquery.ui.mouse.js and jquery.ui.sortable.js.
