@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Sortable test</title>
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="jquery-ui-sortable.js"></script>
+	<style>
+	.sandbox {
+		padding: 30px;
+	}
+	.sandbox ul {
+		margin: 0px;
+		padding: 0px;
+	}
+	.sandbox ul li {
+		list-style: none;
+		border: 1px solid silver;
+		border-radius: 3px;
+		margin: 3px;
+		padding: 5px;
+	}
+
+	.sandbox ul li:hover {
+		background-color: silver;
+		cursor: pointer;
+	}
+
+	</style>
+</head>
+<body>
+	<div class="sandbox">
+		<ul class="sortableItems">
+			<li class="item">
+				1
+			</li>
+			<li class="item">
+				2
+			</li>
+			<li class="item">
+				3
+			</li>
+			<li class="item">
+				4
+			</li>
+			<li class="item">
+				5
+			</li>
+			<li class="item">
+				6
+			</li>
+			<li class="item">
+				7
+			</li>
+			<li class="item">
+				8
+			</li>
+			<li class="item">
+				9
+			</li>
+			<li class="item">
+				10
+			</li>
+		</ul>
+	</div>
+
+	<script>
+	$(function () {
+		$('.sortableItems').sortable({
+			'activate' : function( event, ui ) { 
+				console.log('activate called', arguments);
+			},
+			'beforeStop' : function( event, ui ) { 
+				console.log('beforeStop called', arguments);
+			},
+			'change' : function( event, ui ) { 
+				console.log('change called', arguments);
+			},
+			'create' : function( event, ui ) { 
+				console.log('create called', arguments);
+			},
+			'deactivate' : function( event, ui ) { 
+				console.log('deactivate called', arguments);
+			},
+			'out' : function( event, ui ) { 
+				console.log('out called', arguments);
+			},
+			'over' : function( event, ui ) { 
+				console.log('over called', arguments);
+			},
+			'receive' : function( event, ui ) { 
+				console.log('receive called', arguments);
+			},
+			'remove' : function( event, ui ) { 
+				console.log('remove called', arguments);
+			},
+			'sort' : function( event, ui ) { 
+				//console.log('sort called', arguments);
+			},
+			'start' : function( event, ui ) { 
+				console.log('start called', arguments);
+			},
+			'stop' : function( event, ui ) { 
+				console.log('stop called', arguments);
+			},
+			'update' : function( event, ui ) { 
+				console.log('update called', arguments);
+			}
+		});
+	});
+	</script>
+</body>
+</html>
