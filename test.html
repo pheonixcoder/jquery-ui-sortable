@@ -71,7 +71,25 @@
 
 	<script>
 	$(function () {
+		$('.sortableItems li').click(function (event) {
+			console.log('click', arguments);
+			$(event.target).toggleClass('selected');
+		});
+
 		$('.sortableItems').sortable({
+			'helper' : function (event, ui) {
+
+				var hContainer = $('<div class="helper"></div>');
+				var selected = ui.parent().find('li.selected');
+				if(selected.length) {
+					selected.clone().removeClass('selected').appendTo(hContainer);
+				} else {
+					ui.clone().removeClass('selected').appendTo(hContainer);
+				}
+				
+				return hContainer;
+			},
+
 			'activate' : function( event, ui ) { 
 				console.log('activate called', arguments);
 			},
@@ -103,10 +121,32 @@
 				//console.log('sort called', arguments);
 			},
 			'start' : function( event, ui ) { 
+				$(this).find('li.selected').not('.ui-sortable-placeholder').hide().each(function (i,o) {
+					$(o).data('order', i);
+				});
 				console.log('start called', arguments);
 			},
 			'stop' : function( event, ui ) { 
 				console.log('stop called', arguments);
+				console.log('item', ui.item);
+				var startPoint = $(ui.item).prev();
+				var items = $(this).find('li.selected').not('.ui-sortable-placeholder').show().detach();
+				
+				if(startPoint.length) {
+					startPoint.after(items);
+				} else {
+					$(event.target).prepend(items);
+				}
+				
+				$(this).find('li.selected').each(function (i,o) { 
+					console.log( $(o).data('order') ); 
+				});
+
+				var first = $(this).find('li.selected').first();
+				var target = $($(this).find('li.selected')[first.data('order')])
+				target.after(first);
+
+				$(this).find('li.selected').removeClass('selected');
 			},
 			'update' : function( event, ui ) { 
 				console.log('update called', arguments);

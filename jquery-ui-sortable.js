@@ -850,7 +850,6 @@ $.widget("ui.mouse", {
 					event.stopImmediatePropagation();
 					return false;
 				}
-				$(event.target).toggleClass('selected');
 			});
 
 		this.started = false;
